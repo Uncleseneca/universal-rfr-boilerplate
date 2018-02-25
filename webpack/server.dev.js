@@ -10,12 +10,8 @@ const res = p => path.resolve(__dirname, p)
 // within Webpack and can properly make connections to client modules:
 const externals = fs
   .readdirSync(res('../node_modules'))
-  .filter(
-    x =>
-      !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(
-        x
-      )
-  )
+  .filter(x =>
+    !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(x))
   .reduce((externals, mod) => {
     externals[mod] = `commonjs ${mod}`
     return externals
@@ -44,13 +40,19 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'css-loader/locals',
-          options: {
-            modules: true,
-            localIdentName: '[name]__[local]--[hash:base64:5]'
+        use: [
+          {
+            loader: 'css-loader/locals',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]--[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'postcss-loader'
           }
-        }
+        ]
       }
     ]
   },
