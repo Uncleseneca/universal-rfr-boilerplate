@@ -4,6 +4,8 @@ const webpack = require('webpack');
 
 const res = p => path.resolve(__dirname, p);
 
+const context = path.resolve(__dirname, '../src');
+
 // if you're specifying externals to leave unbundled, you need to tell Webpack
 // to still bundle `react-universal-component`, `webpack-flush-chunks` and
 // `require-universal-module` so that they know they are running
@@ -56,6 +58,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.css'],
+    alias: {
+      components: path.resolve(context, 'components'),
+      reducers: path.resolve(context, 'reducers'),
+    },
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({

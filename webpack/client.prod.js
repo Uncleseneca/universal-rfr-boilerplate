@@ -4,6 +4,8 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 
+const context = path.resolve(__dirname, '../src');
+
 module.exports = {
   name: 'client',
   target: 'web',
@@ -44,6 +46,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.css'],
+    alias: {
+      components: path.resolve(context, 'components'),
+      reducers: path.resolve(context, 'reducers'),
+    },
   },
   plugins: [
     new StatsPlugin('stats.json'),
