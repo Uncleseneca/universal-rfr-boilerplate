@@ -38,13 +38,19 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'css-loader/locals',
-          options: {
-            modules: true,
-            localIdentName: '[name]__[local]--[hash:base64:5]',
+        use: [
+          {
+            loader: 'css-loader/locals',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
           },
-        },
+          {
+            loader: 'postcss-loader',
+          },
+        ],
       },
     ],
   },

@@ -1,22 +1,25 @@
 {
-  "name": "redux-first-router-boilerplate",
-  "description": "Universal Redux-First Router Demo",
+  "name": "universal-redux-first-router-boilerplate",
+  "description": "Universal Redux-First boilerplate",
   "version": "1.0.0",
   "main": "server/index.js",
-  "author": "James Gillmore <james@faceyspacey.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npm run clean && cross-env NODE_ENV=development babel-watch server/index.js",
+    "start":
+      "npm run clean && cross-env NODE_ENV=development babel-watch server/index.js",
     "start:prod": "npm run build && npm run serve",
     "serve": "cross-env NODE_ENV=production node buildServer/index.js",
-    "build": "npm run build:client && npm run build:server && npm run build:node",
-    "build:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
-    "build:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
-    "build:node": "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
+    "build":
+      "npm run build:client && npm run build:server && npm run build:node",
+    "build:client":
+      "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
+    "build:server":
+      "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
+    "build:node":
+      "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
     "clean": "rimraf buildClient buildServer",
-    "precommit": "lint-staged",
-    "lint": "eslint --fix src server webpack",
-    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint"
+    "format":
+      "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
@@ -65,14 +68,5 @@
     "webpack-hot-middleware": "^2.18.2",
     "webpack-hot-server-middleware": "^0.2.0",
     "write-file-webpack-plugin": "^4.1.0"
-  },
-  "lint-staged": {
-    "linters": {
-      "*.js": [
-        "prettier --single-quote --semi=false --write",
-        "eslint --fix",
-        "git add"
-      ]
-    }
   }
 }

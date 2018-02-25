@@ -25,13 +25,19 @@ module.exports = {
       {
         test: /\.css$/,
         use: ExtractCssChunks.extract({
-          use: {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
             },
-          },
+            {
+              loader: 'postcss-loader',
+            },
+          ],
         }),
       },
     ],
