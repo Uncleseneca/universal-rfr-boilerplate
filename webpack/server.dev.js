@@ -1,8 +1,8 @@
-const fs = require('fs')
-const path = require('path')
-const webpack = require('webpack')
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
 
-const res = p => path.resolve(__dirname, p)
+const res = p => path.resolve(__dirname, p);
 
 // if you're specifying externals to leave unbundled, you need to tell Webpack
 // to still bundle `react-universal-component`, `webpack-flush-chunks` and
@@ -13,9 +13,9 @@ const externals = fs
   .filter(x =>
     !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(x))
   .reduce((externals, mod) => {
-    externals[mod] = `commonjs ${mod}`
-    return externals
-  }, {})
+    externals[mod] = `commonjs ${mod}`;
+    return externals;
+  }, {});
 
 module.exports = {
   name: 'server',
@@ -28,14 +28,14 @@ module.exports = {
     path: res('../buildServer'),
     filename: '[name].js',
     libraryTarget: 'commonjs2',
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.css$/,
@@ -46,28 +46,28 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
-            }
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
           },
           {
-            loader: 'postcss-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'postcss-loader',
+          },
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.css']
+    extensions: ['.js', '.css'],
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
+      maxChunks: 1,
     }),
 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
-    })
-  ]
-}
+        NODE_ENV: JSON.stringify('development'),
+      },
+    }),
+  ],
+};

@@ -1,8 +1,8 @@
 export default (state = [], action = {}) => {
   switch (action.type) {
     case 'PACKAGES_FETCHED':
-      return action.payload.packages
+      return action.payload.packages;
     default:
-      return state
+      return state;
   }
-}
+};
