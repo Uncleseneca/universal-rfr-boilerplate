@@ -17,6 +17,8 @@ const externals = fs
     return externals;
   }, {});
 
+const context = path.resolve(__dirname, '../src');
+
 module.exports = {
   name: 'server',
   target: 'node',
@@ -58,7 +60,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.css'],
+    alias: {
+      components: path.resolve(context, 'components'),
+      reducers: path.resolve(context, 'reducers'),
+    },
   },
+
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,

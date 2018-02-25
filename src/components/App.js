@@ -1,4 +1,5 @@
 import React from 'react';
+import * as reducers from 'reducers';
 
 import Sidebar from './Sidebar';
 import Switcher from './Switcher';
@@ -11,5 +12,7 @@ const App = () => (
     <Switcher />
   </div>
 );
+
+console.log(reducers);
 
 export default App;

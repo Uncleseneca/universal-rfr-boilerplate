@@ -4,6 +4,8 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
+const context = path.resolve(__dirname, '../src');
+
 module.exports = {
   name: 'client',
   target: 'web',
@@ -50,7 +52,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.css'],
+    alias: {
+      components: path.resolve(context, 'components'),
+      reducers: path.resolve(context, 'reducers'),
+    },
   },
+
   plugins: [
     new WriteFilePlugin(), // used so you can see what chunks are produced in dev
     new ExtractCssChunks(),

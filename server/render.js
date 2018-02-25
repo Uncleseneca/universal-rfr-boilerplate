@@ -24,7 +24,7 @@ export default ({ clientStats }) => async (req, res, next) => {
       <html>
         <head>
           <meta charset="utf-8">
-          <title>${state.title}</title>
+          <title>Boilerplate</title>
           ${styles}
         </head>
         <body>
