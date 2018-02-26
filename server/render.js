@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { flushChunkNames } from 'react-universal-component/server';
+import { ServerStyleSheet } from 'styled-components';
 import flushChunks from 'webpack-flush-chunks';
 import configureStore from './configureStore';
 import App from '../src/components/App';
@@ -11,11 +12,14 @@ export default ({ clientStats }) => async (req, res, next) => {
   if (!store) return; // no store means redirect was already served
 
   const app = createApp(App, store);
-  const appString = ReactDOM.renderToString(app);
+  const sheet = new ServerStyleSheet();
+  const appStyled = sheet.collectStyles(app);
+  const appString = ReactDOM.renderToString(appStyled);
+  const styles = sheet.getStyleTags(); // getStyleTags() can only be called after app rendering
   const state = store.getState();
   const stateJson = JSON.stringify(state);
   const chunkNames = flushChunkNames();
-  const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
+  const { js } = flushChunks(clientStats, { chunkNames });
 
   console.log('REQUESTED PATH:', req.path);
   console.log('CHUNK NAMES RENDERED', chunkNames);
@@ -30,7 +34,6 @@ export default ({ clientStats }) => async (req, res, next) => {
         <body>
           <script>window.REDUX_STATE = ${stateJson}</script>
           <div id="root">${appString}</div>
-          ${cssHash}
           <script type='text/javascript' src='/static/vendor.js'></script>
           ${js}
         </body>
