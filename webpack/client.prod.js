@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 
@@ -24,24 +23,6 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-      {
-        test: /\.css$/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                importLoaders: 1,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-              },
-            },
-            {
-              loader: 'postcss-loader',
-            },
-          ],
-        }),
-      },
     ],
   },
   resolve: {
@@ -53,7 +34,6 @@ module.exports = {
   },
   plugins: [
     new StatsPlugin('stats.json'),
-    new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
       filename: '[name].[chunkhash].js',

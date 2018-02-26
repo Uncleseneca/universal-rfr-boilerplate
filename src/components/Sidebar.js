@@ -2,10 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Link from 'redux-first-router-link';
 
-import styles from '../css/Sidebar';
-
 const Sidebar = ({ path, dispatch }) => (
-  <div className={styles.sidebar}>
+  <div>
     <Link to="/">Home</Link>
 
     <Link to="/dashboard">Dashboard</Link>

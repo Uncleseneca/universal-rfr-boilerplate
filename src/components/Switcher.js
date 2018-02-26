@@ -2,22 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import universal from 'react-universal-component';
 
-import styles from '../css/Switcher';
-
 const UniversalComponent = universal(({ page }) => import(`./${page}`), {
   minDelay: 500,
 
   loading: () => (
-    <div className={styles.spinner}>
+    <div>
       <div />
     </div>
   ),
 
-  error: () => <div className={styles.notFound}>PAGE NOT FOUND - 404</div>,
+  error: () => <div>PAGE NOT FOUND - 404</div>,
 });
 
 const Switcher = ({ page }) => (
-  <div className={styles.switcher}>
+  <div>
     <UniversalComponent page={page} />
   </div>
 );

@@ -39,23 +39,6 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'css-loader/locals',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-          },
-          {
-            loader: 'postcss-loader',
-          },
-        ],
-      },
     ],
   },
   resolve: {

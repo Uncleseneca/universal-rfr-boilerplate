@@ -5,30 +5,31 @@
   "main": "server/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "npm run clean && cross-env NODE_ENV=development babel-watch server/index.js",
+    "start":
+      "npm run clean && cross-env NODE_ENV=development babel-watch server/index.js",
     "start:prod": "npm run build && npm run serve",
     "serve": "cross-env NODE_ENV=production node buildServer/index.js",
-    "build": "npm run build:client && npm run build:server && npm run build:node",
-    "build:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
-    "build:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
-    "build:node": "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
+    "build":
+      "npm run build:client && npm run build:server && npm run build:node",
+    "build:client":
+      "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
+    "build:server":
+      "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
+    "build:node":
+      "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
     "clean": "rimraf buildClient buildServer",
-    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint"
+    "format":
+      "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "classnames": "^2.2.5",
     "express": "^4.15.2",
     "history": "^4.6.3",
-    "postcss-cssnext": "^3.1.0",
-    "postcss-import": "^11.1.0",
-    "postcss-loader": "^2.1.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.5",
     "react-universal-component": "^2.5.0",
     "redux": "^3.7.0",
-    "redux-devtools-extension": "^2.13.2",
     "redux-first-router": "^1.9.15",
     "redux-first-router-link": "^1.1.4",
     "styled-components": "^3.1.6",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "autodll-webpack-plugin": "^0.3.4",
+    "redux-devtools-extension": "^2.13.2",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^8.0.1",
@@ -47,7 +49,6 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-watch": "^2.0.6",
     "cross-env": "^5.0.1",
-    "css-loader": "^0.28.7",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.2.0",

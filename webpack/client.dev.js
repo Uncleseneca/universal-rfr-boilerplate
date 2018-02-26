@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 const context = path.resolve(__dirname, '../src');
 
@@ -30,24 +29,6 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-      {
-        test: /\.css$/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                importLoaders: 1,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-              },
-            },
-            {
-              loader: 'postcss-loader',
-            },
-          ],
-        }),
-      },
     ],
   },
   resolve: {
@@ -60,7 +41,6 @@ module.exports = {
 
   plugins: [
     new WriteFilePlugin(), // used so you can see what chunks are produced in dev
-    new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
       filename: '[name].js',
