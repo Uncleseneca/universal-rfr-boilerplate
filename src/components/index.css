@@ -1,0 +1,109 @@
+@import "normalize.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+}
+
+:root {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+svg {
+  display: block;
+}
+
+/* 
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+:global .title1 {
+  margin: 0;
+
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 48px;
+  color: var(--codGray);
+}
+
+:global .title2 {
+  margin: 0;
+
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 34px;
+  color: var(--codGray);
+}
+
+:global .title3 {
+  margin: 0;
+
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 34px;
+  color: var(--codGray);
+}
+
+:global .title4 {
+  margin: 0;
+
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--codGray);
+}
+
+:global .title5 {
+  margin: 0;
+
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 24px;
+  color: var(--codGray);
+}
+
+:global .title6 {
+  margin: 0;
+
+  font-size: 28px;
+  line-height: 34px;
+  color: #262626;
+}
+
+:global .title7 {
+  margin: 0;
+
+  font-size: 24px;
+  line-height: 28px;
+  color: #262626;
+}
+
+:global .text1 {
+  margin: 0;
+
+  font-size: 19px;
+  line-height: 24px;
+  color: #262626;
+}
+
+:global .text2 {
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 22px;
+  color: #262626;
+}
+
+:global .text3 {
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 16px;
+  color: #262626;
+}
+ */

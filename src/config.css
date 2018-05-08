@@ -1,0 +1,20 @@
+:root {
+  /* --codGray: #0d0d0d;
+  --mineShaft: #262626;
+  --friarGray: #80807e;
+  --starDust: #999997;
+  --quillGray: #d9d9d2;
+  --salem: #11a629; */
+  --titleBold1: bold 40px/48px Helvetica, sans-serif;
+  --titleBold2: bold 28px/34px Helvetica, sans-serif;
+  --titleBold3: bold 24px/28px Helvetica, sans-serif;
+  --titleBold4: bold 19px/24px Helvetica, sans-serif;
+  --titleBold5: bold 15px/22px Helvetica, sans-serif;
+
+  --titleRegular1: 28px/34px Helvetica, sans-serif;
+  --titleRegular2: 24px/28px Helvetica, sans-serif;
+
+  --text1: 19px/24px Helvetica, sans-serif;
+  --text2: 15px/22px Helvetica, sans-serif;
+  --text3: 12px/16px Helvetica, sans-serif;
+}

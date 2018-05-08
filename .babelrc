@@ -1,0 +1,37 @@
+{
+  "presets": ["env", "react", "stage-2"],
+  "plugins": [
+    [
+      "universal-import",
+      {
+        "babelServer": true
+      }
+    ],
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "components": "./src/components",
+          "actions": "./src/actions",
+          "helpers": "./src/helpers",
+          "assets": "./src/assets",
+          "selectors": "./src/selectors",
+          "api": "./src/api",
+          "icons": "./src/components/modules/icons"
+        }
+      }
+    ]
+  ],
+  "env": {
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
+    }
+  }
+}
