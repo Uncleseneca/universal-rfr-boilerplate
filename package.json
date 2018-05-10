@@ -6,21 +6,15 @@
   "license": "MIT",
   "scripts": {
     "flow": "flow",
-    "start":
-      "npm run clean && cross-env NODE_ENV=development babel-watch --inspect server/index.js",
+    "start": "npm run clean && cross-env NODE_ENV=development babel-watch --inspect server/index.js",
     "start:prod": "npm run build && npm run serve",
     "serve": "cross-env NODE_ENV=production node buildServer/index.js",
-    "build":
-      "npm run build:client && npm run build:server && npm run build:node",
-    "build:client":
-      "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
-    "build:server":
-      "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
-    "build:node":
-      "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
+    "build": "npm run build:client && npm run build:server && npm run build:node",
+    "build:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
+    "build:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
+    "build:node": "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
     "clean": "rimraf buildClient buildServer",
-    "format":
-      "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint",
+    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint",
     "svgr": "svgr -d icons/out icons/raw"
   },
   "dependencies": {
@@ -72,11 +66,11 @@
   "devDependencies": {
     "autodll-webpack-plugin": "^0.3.4",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.24.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.1",
     "babel-plugin-styled-components": "^1.5.1",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
@@ -87,8 +81,8 @@
     "css-loader": "^0.28.7",
     "del": "^3.0.0",
     "eslint": "^4.9.0",
-    "eslint-import-resolver-webpack": "^0.9.0",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-webpack": "^0.9.0",
     "eslint-plugin-flow": "^2.29.1",
     "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-import": "^2.2.0",

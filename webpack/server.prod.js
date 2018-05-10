@@ -23,7 +23,7 @@ module.exports = {
   name: 'server',
   target: 'node',
   devtool: 'source-map',
-  entry: [res('../server/render.js')],
+  entry: ['babel-polyfill', res('../server/render.js')],
   externals,
   output: {
     path: res('../buildServer'),
@@ -36,7 +36,12 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['babel-preset-env'],
+          },
+        },
       },
       {
         oneOf: [

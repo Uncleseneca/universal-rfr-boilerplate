@@ -39,7 +39,7 @@ if (DEV) {
 
   app.use(
     /* [publicPath, '.*\.(ico|png|svg|css|js)'], */ express.static(outputPath));
-  app.use(webpackDevMiddleware(multiCompiler, { publicPath }));
+  app.use(webpackDevMiddleware(multiCompiler, { publicPath, stats: { colors: true } }));
 
   app.use(webpackHotMiddleware(clientCompiler));
   app.use(
