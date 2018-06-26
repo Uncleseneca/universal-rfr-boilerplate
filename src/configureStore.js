@@ -1,4 +1,3 @@
-// @flow
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
