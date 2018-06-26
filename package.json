@@ -15,7 +15,8 @@
     "build:node": "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
     "clean": "rimraf buildClient buildServer",
     "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint",
-    "svgr": "svgr -d icons/out icons/raw"
+    "svgr": "svgr -d icons/out icons/raw",
+    "lint": "eslint ."
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -57,7 +58,6 @@
     "redux-thunk": "^2.2.0",
     "redux-windowsize": "^1.3.1",
     "reselect": "^3.0.1",
-    "serve-favicon": "^2.4.5",
     "styled-components": "^3.2.3",
     "svg-url-loader": "^2.3.2",
     "svgr": "^1.9.1",

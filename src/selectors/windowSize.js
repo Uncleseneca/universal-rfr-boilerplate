@@ -1,6 +1,6 @@
 import { overEvery } from 'lodash';
 import { gte as maxWidth, lt as minWidth } from 'lodash/fp';
-import { createSelector, createStructuredSelector } from 'reselect';
+import { createSelector } from 'reselect';
 import {
   getHeightWidth,
   getWindowWidth,

@@ -8,7 +8,13 @@ import flushChunks from 'webpack-flush-chunks';
 import configureStore from './configureStore';
 import App from '../src/components/App';
 
-export default ({ clientStats }) => async (req, res, next) => {
+const createApp = (AppComponent, store) => (
+  <Provider store={store}>
+    <AppComponent />
+  </Provider>
+);
+
+export default ({ clientStats }) => async (req, res) => {
   const store = await configureStore(req, res);
   if (!store) return; // no store means redirect was already served
 
@@ -22,33 +28,30 @@ export default ({ clientStats }) => async (req, res, next) => {
   const chunkNames = flushChunkNames();
   const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
 
-  console.log('REQUESTED PATH:', req.path);
-  console.log('CHUNK NAMES RENDERED', chunkNames);
+  console.log('REQUESTED PATH:', req.path); // eslint-disable-line no-console
+  console.log('CHUNK NAMES RENDERED', chunkNames); // eslint-disable-line no-console
   const helmet = Helmet.renderStatic();
 
-  return res.send(`<!doctype html>
-      <html>
-        <head>
-           <meta charset="UTF-8">
-          ${helmet.title.toString()}
-          ${helmet.meta.toString()}
-          ${helmet.link.toString()}
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          ${styles}
-          ${scStyles}
-        </head>
-        <body>
-          <script>window.REDUX_STATE = ${stateJson};</script>
-          <div id="root">${appString}</div>
-          ${cssHash}
-          <script type='text/javascript' src='/assets/vendor.js'></script>
-          ${js}
-        </body>
-      </html>`);
+  // eslint-disable-next-line consistent-return
+  return res.send(`
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
+        ${helmet.link.toString()}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        ${styles}
+        ${scStyles}
+      </head>
+      <body>
+        <script>window.REDUX_STATE = ${stateJson};</script>
+        <div id="root">${appString}</div>
+        ${cssHash}
+        <script type='text/javascript' src='/assets/vendor.js'></script>
+        ${js}
+      </body>
+    </html>
+  `);
 };
-
-const createApp = (App, store) => (
-  <Provider store={store}>
-    <App />
-  </Provider>
-);

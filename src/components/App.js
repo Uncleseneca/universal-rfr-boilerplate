@@ -3,7 +3,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import * as Screens from 'components/screens';
+import * as Screens from 'components/screens'; // eslint-disable-line no-unused-vars
 import * as Modules from 'components/modules';
 import './index.css';
 import styles from './app.css';
