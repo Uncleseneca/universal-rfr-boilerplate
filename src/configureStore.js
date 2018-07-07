@@ -1,4 +1,3 @@
-// @flow
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
@@ -9,6 +8,12 @@ import windowSize, { REDUCER_KEY } from 'redux-windowsize';
 import routesMap from './routesMap';
 import * as reducers from './reducers';
 import * as actionCreators from './actions';
+
+
+const composeEnhancers = (...args) =>
+  (typeof window !== 'undefined'
+    ? composeWithDevTools({ actionCreators })(...args)
+    : compose(...args));
 
 export default (history, preloadedState) => {
   const {
@@ -29,19 +34,14 @@ export default (history, preloadedState) => {
 
   if (module.hot && process.env.NODE_ENV === 'development') {
     module.hot.accept('./reducers/index', () => {
-      const reducers = require('./reducers/index');
-      const rootReducer = combineReducers({
-        ...reducers,
+      const devReducers = require('./reducers/index');
+      const devRootReducer = combineReducers({
+        ...devReducers,
         location: reducer,
       });
-      store.replaceReducer(rootReducer);
+      store.replaceReducer(devRootReducer);
     });
   }
 
   return { store, thunk };
 };
-
-const composeEnhancers = (...args) =>
-  (typeof window !== 'undefined'
-    ? composeWithDevTools({ actionCreators })(...args)
-    : compose(...args));

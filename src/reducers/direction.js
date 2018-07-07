@@ -3,7 +3,7 @@ export default (state = 'next', action = {}) => {
     return state;
   }
 
-  const type = action.type;
+  const { type } = action;
   const prevType = action.meta.location.prev.type;
 
   if (type === prevType) {
