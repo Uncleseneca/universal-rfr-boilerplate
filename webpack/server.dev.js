@@ -14,7 +14,7 @@ const externals = fs
     !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(x))
   .reduce((externalModules, mod) => {
     externalModules[mod] = `commonjs ${mod}`; // eslint-disable-line no-param-reassign
-    return externals;
+    return externalModules;
   }, {});
 
 const context = path.resolve(__dirname, '../src');
